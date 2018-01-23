@@ -1,0 +1,28 @@
+{
+  "name": "terrific-eventless",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack --optimize-minimize",
+    "test": "jest --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/noblica/terrific-eventless.git"
+  },
+  "author": "noblica",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/noblica/terrific-eventless/issues"
+  },
+  "homepage": "https://github.com/noblica/terrific-eventless#readme",
+  "devDependencies": {
+    "@types/jest": "^22.0.1",
+    "awesome-typescript-loader": "^3.4.1",
+    "jest": "^22.1.4",
+    "ts-jest": "^22.0.1",
+    "typescript": "^2.6.2",
+    "webpack": "^3.10.0"
+  }
+}
