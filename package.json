@@ -24,5 +24,15 @@
     "ts-jest": "^22.0.1",
     "typescript": "^2.6.2",
     "webpack": "^3.10.0"
+  },
+  "jest": {
+    "moduleFileExtensions": [
+      "ts",
+      "js"
+    ],
+    "transform": {
+      "^.+\\.ts?$": "ts-jest"
+    },
+    "testRegex": "(src/jest/.*|(\\.|/)(test|spec))\\.(js?|ts?)$"
   }
 }
