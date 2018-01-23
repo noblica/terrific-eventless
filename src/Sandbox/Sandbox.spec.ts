@@ -2,9 +2,9 @@ import Module from '../Module/Module';
 import Sandbox from '../Sandbox/Sandbox';
 
 describe('Sandbox', () => {
+    const testElement = document.createElement('DIV');
+    
     describe('constructor', () => {
-        const testElement = document.createElement('DIV');
-
         it('should create a Sandbox from a module', () => {
             const FooModule = new Module(testElement);
             const FooSandbox = new Sandbox(FooModule);

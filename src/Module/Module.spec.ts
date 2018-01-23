@@ -1,8 +1,9 @@
 import Module from './Module';
+import Sandbox from '../Sandbox/Sandbox';
 
 describe('Module', () => {
+    const testElement = document.createElement('DIV');
     describe('constructor()', () => {
-        const testElement = document.createElement('DIV');        
         it('should set the correct context', () => {
             const Foo = new Module(testElement); 
             
@@ -37,6 +38,44 @@ describe('Module', () => {
             Foo.start(testFn);
 
             expect(testFn).toHaveBeenCalled();
+        });
+    });
+
+
+    describe('registerSandbox()', () => {
+        class FooExtend extends Module {
+            constructor(element: HTMLElement) {
+                super(element);
+            }
+
+            foo() {
+                return 'foo';
+            }
+
+            bar() {
+                return this.sandbox.registeredModules[1].bar();
+            }
+        }
+
+        class BarExtend extends Module {
+            constructor(element: HTMLElement) {
+                super(element);
+            }
+
+            bar() {
+                return 'bar';
+            }
+        }
+
+        it('should invoke a function from a different module, via Sandbox', () => {
+            const FooModule = new FooExtend(testElement);
+            const BarModule = new BarExtend(testElement);
+
+            const testSandbox = new Sandbox([FooModule, BarModule]);
+
+            FooModule.registerSandbox(testSandbox);
+            BarModule.registerSandbox(testSandbox);
+            expect(FooModule.bar()).toBe('bar');
         });
     });
 });
