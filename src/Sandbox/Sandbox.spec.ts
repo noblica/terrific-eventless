@@ -17,6 +17,25 @@ describe('Sandbox', () => {
             expect(FooSandbox.registeredModules[0]).toBe(FooModules[0]);
             expect(FooSandbox.registeredModules[1]).toBe(FooModules[1]);
             expect(FooSandbox.registeredModules).toEqual(expect.arrayContaining(FooModules));
-        })
+        });
+
+        it('should add an extended module to the sandbox', () => {
+            class ExtendedModule extends Module {
+                constructor(element: HTMLElement) {
+                    super(element);
+                }
+
+                foo() {
+                    return 'foo!';
+                }
+            }
+
+            const FooExtended = new ExtendedModule(testElement);
+            const FooSandbox = new Sandbox(FooExtended);
+
+            expect(FooExtended instanceof Module).toBeTruthy();
+            expect(FooExtended instanceof ExtendedModule).toBeTruthy();
+            expect(FooSandbox.registeredModules).toContain(FooExtended);
+        });
     });
 });
